@@ -1,0 +1,33 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding: 0 50px;
+  /* width: 1444px; */
+  height: 62px;
+}
+.left-section{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+}
+.logo-header{
+  color: #d375b9;
+}
+
+.right-section{
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.right-section h3{
+  color: #d375b9;
+  font-size: 36px;
+  cursor: pointer;
+}
+img{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}

@@ -1,0 +1,90 @@
+.landingPage {
+  background-image: url("../../../public/Bitmap.jpg");
+  width: 100%;
+  height: 266px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.tasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.tasks .addTask {
+  position: absolute;
+  top: 30%;
+  left: 32%;
+}
+.tasks input {
+  border: none;
+  outline: none;
+}
+.tasks button {
+  border: none;
+  width: 200px;
+  height: 32px;
+  margin-top: 5px;
+  background-color: white;
+  box-shadow: 0px 1px 10px #d8d5d5;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.tasks div,
+.tasks input {
+  text-align: center;
+  background-color: white;
+  box-shadow: 0px 1px 10px #d8d5d5;
+  width: 540px;
+  height: 64px;
+  border-radius: 10px;
+}
+.singleTask {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+.close {
+  height: 18.22px;
+  width: 18.21px;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  height: 231px;
+  width: 263px;
+  position: absolute;
+  top: 15%;
+  right: 0;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0px 1px 10px #d8d5d5;
+  box-sizing: border-box;
+  gap: 15px;
+}
+.user-info p {
+  color: #d375b9;
+  font-weight: 600;
+}
+.user-info button {
+  height: 36px;
+  width: 246px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+.user-info .modify {
+  background-color: #7c8495;
+  border: none;
+}
+.user-info .logOut {
+  background-color: #d375b9;
+  border: none;
+}

@@ -1,0 +1,46 @@
+.modifyTitle {
+  color: #d375b9;
+  background-color: white;
+  width: 540px;
+  height: 64px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.modifyTitle h1 {
+  font-size: 20px;
+}
+
+.modify {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 527px;
+  width: 540px;
+  background-color: white;
+}
+label {
+  margin-bottom: 10px;
+}
+form input {
+  height: 47px;
+  width: 398px;
+  outline: none;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  height: 79px;
+  width: 398px;
+  padding-bottom: 15px;
+}
+.saveChange button {
+  background-color: #d375b9;
+  border: none;
+  height: 47px;
+  width: 540px;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  margin-top: 20px;
+}

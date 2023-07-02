@@ -1,0 +1,11 @@
+.left {
+  background-image: url("../../../public/under.png");
+  height: 600px;
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #d375b9;
+}

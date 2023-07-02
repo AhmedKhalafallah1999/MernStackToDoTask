@@ -1,0 +1,62 @@
+.logInPage {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+}
+.logInPage {
+  display: flex;
+}
+.logIn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 600px;
+  width: 491px;
+  background-color: white;
+}
+.logIn h1 {
+  color: #d375b9;
+}
+label {
+  margin-bottom: 10px;
+}
+form input {
+  height: 47px;
+  width: 398px;
+  outline: none;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  height: 79px;
+  width: 398px;
+  padding-bottom: 15px;
+}
+.logInBtn {
+  background-color: #d375b9;
+  border: none;
+  height: 53px;
+  width: 398px;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+.alternative {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.alternative button {
+  border: none;
+  background: none;
+  color: #bc3e98;
+  font-weight: 700;
+  font-size: 18px;
+  cursor: pointer;
+}

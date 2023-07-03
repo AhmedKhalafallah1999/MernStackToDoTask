@@ -16,13 +16,27 @@
   top: 20%;
   left: 32%;
 }
-.tasks .addTask {
+.tasks {
   margin-bottom: 30px;
+}
+.addTask {
+  margin-bottom: 20px;
 }
 .tasks input {
   border: none;
   outline: none;
   border-radius: 8px;
+}
+.addTask span {
+  position: absolute;
+  top: 5%;
+  right: 8%;
+  background-color: #d375b9;
+  cursor: pointer;
+  font-size: 18px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  color: white;
 }
 .tasks button {
   border: none;
@@ -128,29 +142,54 @@
 /* BELOW 944px (Tablets) */
 /**************************/
 
-@media (min-width: 44em) and (max-width: 59em) {
+@media (min-width: 40em) and (max-width: 59em) {
   html {
     /* 8px / 16px = 0.5 = 50% */
     font-size: 50%;
   }
-  .SignPage {
-    flex-direction: column;
+  .tasks {
+    width: 600px;
+    left: 10%;
+  }
+  .tasks .singleTask,
+  .tasks .addTask input,
+  .tasks .control {
+    height: 48px;
+    width: 500px;
+  }
+  .control {
+    font-size: 8px;
   }
 }
 /**************************/
 /* BELOW 704px (Smaller tablets) */
 /**************************/
 
-@media (min-width: 34em) and (max-width: 44em) {
-  .SignPage {
-    flex-direction: column;
+@media (min-width: 30em) and (max-width: 40em) {
+  html {
+    /* 8px / 16px = 0.5 = 50% */
+    font-size: 50%;
+  }
+
+  .tasks {
+    width: 400px;
+    left: 10%;
+  }
+  .tasks .singleTask,
+  .tasks .addTask input,
+  .tasks .control {
+    height: 48px;
+    width: 400px;
+  }
+  .control {
+    font-size: 12px;
   }
 }
 /**************************/
 /* BELOW 544px (Phones) */
 /**************************/
 
-@media (max-width: 34em) {
+@media (max-width: 30em) {
   .landingPage {
     width: 415px;
     height: 266px;
@@ -165,7 +204,11 @@
     height: 48px;
     width: 327px;
   }
-  .control{
+  .control {
     font-size: 8px;
+  }
+  .user-info {
+    width: 375px;
+    top: 50%;
   }
 }

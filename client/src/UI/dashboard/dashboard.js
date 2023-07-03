@@ -6,11 +6,56 @@ import "./dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(false);
+  const [taskState, setTaskState] = useState("");
+  // const [modifyUserInfo, setModifyUserInfo] = useState(false);
   const onUserShowHandler = (props) => {
     setUserInfo(props);
   };
   const LogOutHandler = () => {
+    localStorage.removeItem("data");
     navigate("./login");
+  };
+  const modifyUserINfoHandler = () => {
+    navigate("/modify");
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setTaskState((prevState) => ({ ...prevState, [name]: value }));
+  };
+  const submitTaskHandler = async () => {
+    const { email, password } = JSON.parse(localStorage.getItem("data"));
+    const data = { email, password, taskState };
+    console.log(data);
+    if (taskState === "") {
+      console.log("empty fields");
+      return;
+    } else {
+      const response = await fetch("http://localhost:4000/api/dashboard", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      if (response.status === 404 || response.status === 401) {
+        // toast.info(`${result.message}`, {
+        //   position: "top-right",
+        //   autoClose: 6000,
+        //   hideProgressBar: false,
+        //   closeOnClick: true,
+        //   pauseOnHover: true,
+        //   draggable: true,
+        //   progress: undefined,
+        //   theme: "light",
+        // });
+        return console.log("gg",result);
+      } else {
+        console.log(taskState);
+        document.getElementById("taskInput").value = "";
+        setTaskState("");
+      }
+    }
   };
   return (
     <>
@@ -18,9 +63,18 @@ const Dashboard = () => {
       <div className="landingPage"></div>
       <div className="tasks">
         <div className="addTask">
-          <form>
-            <input type="text" />
-          </form>
+          <input
+            id="taskInput"
+            type="text"
+            name="text"
+            // value={taskState}
+            onChange={handleInputChange}
+            placeholder="Type your task here,"
+            required
+          />
+          <span className="addToDB" onClick={submitTaskHandler}>
+            +
+          </span>
         </div>
 
         <div className="singleTask first">
@@ -62,9 +116,13 @@ const Dashboard = () => {
         </div>
       </div>
       {userInfo ? (
-        <div className="user-info">
+        <div className="user-info landingBlack">
           <p>Hi Mohamed</p>
-          <button className="modify" type="submit">
+          <button
+            className="modify"
+            type="submit"
+            onClick={modifyUserINfoHandler}
+          >
             Modify User Info
           </button>
           <form action="/logout" method="POST">

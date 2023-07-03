@@ -47,7 +47,10 @@ const LogIn = () => {
           progress: undefined,
           theme: "light",
         });
-      } else return navigate("/");
+      } else {
+        localStorage.setItem("data", JSON.stringify(data));
+        return navigate("/");
+      }
     }
   };
   const SignUpHandlerAlt = () => {

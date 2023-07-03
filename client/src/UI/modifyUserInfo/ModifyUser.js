@@ -1,6 +1,7 @@
 import "./ModifyUser.css";
 const ModifyUser = () => {
   return (
+    
     <div className="modifyPage">
       {/* <img src="." alt="cover" /> */}
       <div className="modifyTitle">

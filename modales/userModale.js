@@ -17,17 +17,23 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   phone: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   birthday: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
+  tasks: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Task",
+    },
+  ],
 });
 
 module.exports = mongoose.model("User", userSchema);

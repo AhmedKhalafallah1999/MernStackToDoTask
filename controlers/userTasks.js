@@ -7,16 +7,20 @@ function UserTasks(req, res) {
     .then((user) => {
       // res._id = user._id;
       const userTask = new UserTask({
-        title: taskState,
+        title: taskState.text,
         user: user._id,
       });
       userTask
         .save()
         .then((result) => {
+          user.tasks.push(result);
+          user.save();
           console.log(result);
+          res.status(201).json(result);
+          console.log("User Data is save in DataBase");
         })
         .catch((err) => {
-          res.status(404).json({ erro: err.message });
+          res.status(404).json({ error: err.message });
         });
       // .then((user) => {
       //   user.tasks.push(userTask);

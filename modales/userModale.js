@@ -30,8 +30,10 @@ const userSchema = new mongoose.Schema({
   },
   tasks: [
     {
-      type: mongoose.Schema.Types.ObjectId,
+      // type: mongoose.Schema.Types.ObjectId,
+      type: Object,
       ref: "Task",
+      required: true,
     },
   ],
 });

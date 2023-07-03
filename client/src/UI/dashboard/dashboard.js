@@ -1,5 +1,8 @@
 import Header from "../header/header";
 import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
@@ -25,9 +28,19 @@ const Dashboard = () => {
   const submitTaskHandler = async () => {
     const { email, password } = JSON.parse(localStorage.getItem("data"));
     const data = { email, password, taskState };
-    console.log(data);
+    console.log(taskState);
     if (taskState === "") {
-      console.log("empty fields");
+      toast.info("Empty Field", {
+        position: "top-right",
+        autoClose: 6000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+
       return;
     } else {
       const response = await fetch("http://localhost:4000/api/dashboard", {
@@ -38,20 +51,19 @@ const Dashboard = () => {
         body: JSON.stringify(data),
       });
       const result = await response.json();
-      if (response.status === 404 || response.status === 401) {
-        // toast.info(`${result.message}`, {
-        //   position: "top-right",
-        //   autoClose: 6000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        //   theme: "light",
-        // });
-        return console.log("gg",result);
+      // console.log("DDD", result);
+      if (response.status === 400 || response.status === 401) {
+        toast.info(`${result.message}`, {
+          position: "top-right",
+          autoClose: 6000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
-        console.log(taskState);
         document.getElementById("taskInput").value = "";
         setTaskState("");
       }
@@ -114,6 +126,18 @@ const Dashboard = () => {
           </div>
           <div>Clear Completed</div>
         </div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
       </div>
       {userInfo ? (
         <div className="user-info landingBlack">

@@ -1,4 +1,4 @@
-.header{
+.header {
   display: flex;
   justify-content: space-between;
   background-color: white;
@@ -6,28 +6,65 @@
   /* width: 1444px; */
   height: 62px;
 }
-.left-section{
+.left-section {
   display: flex;
   align-items: center;
   gap: 30px;
-
 }
-.logo-header{
+.logo-header {
   color: #d375b9;
 }
 
-.right-section{
+.right-section {
   display: flex;
   align-items: center;
   gap: 30px;
 }
-.right-section h3{
+.right-section h3 {
   color: #d375b9;
   font-size: 36px;
   cursor: pointer;
 }
-img{
+img {
   width: 40px;
   height: 40px;
   cursor: pointer;
+}
+/**************************/
+/* BELOW 944px (Tablets) */
+/**************************/
+
+@media (min-width: 44em) and (max-width: 59em) {
+  html {
+    /* 8px / 16px = 0.5 = 50% */
+    font-size: 50%;
+  }
+}
+/**************************/
+/* BELOW 704px (Smaller tablets) */
+/**************************/
+
+@media (min-width: 34em) and (max-width: 44em) {
+  .SignPage {
+    flex-direction: column;
+  }
+}
+/**************************/
+/* BELOW 544px (Phones) */
+/**************************/
+
+@media (max-width: 34em) {
+  .header {
+    width: 300px;
+    height: 62px;
+    padding: 0 15px;
+    max-width: 100%;
+  }
+  .left-section,
+  .right-section {
+    gap: 10px;
+  }
+  .logo-header{
+    font-size: 18px;
+  }
 }

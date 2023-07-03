@@ -12,15 +12,17 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: absolute;
+  top: 20%;
+  left: 32%;
 }
 .tasks .addTask {
-  position: absolute;
-  top: 30%;
-  left: 32%;
+  margin-bottom: 30px;
 }
 .tasks input {
   border: none;
   outline: none;
+  border-radius: 8px;
 }
 .tasks button {
   border: none;
@@ -32,25 +34,59 @@
   border-radius: 10px;
   cursor: pointer;
 }
-.tasks div,
+.singleTask,
+.control,
 .tasks input {
   text-align: center;
   background-color: white;
   box-shadow: 0px 1px 10px #d8d5d5;
   width: 540px;
   height: 64px;
-  border-radius: 10px;
 }
-.singleTask {
+.singleTask,
+.control {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 40px;
   box-sizing: border-box;
 }
-.close {
-  height: 18.22px;
-  width: 18.21px;
+.first {
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}
+.radioWithTask {
+  display: flex;
+  gap: 25px;
+}
+.radioBtn {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  /* background-color: #d375b9; */
+  border: 1px #7c8495 solid;
+}
+.task {
+  font-size: 18px;
+}
+.closeTask {
+  /* height: 18.22px; */
+  /* width: 18.21px; */
+  font-size: 24px;
+  color: #7c8495;
+  font-weight: 300;
+}
+.control {
+  display: flex;
+  justify-content: space-between;
+  color: #7c8495;
+  font-size: 14px;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+.control .status {
+  display: flex;
+  gap: 16px;
 }
 .user-info {
   display: flex;
@@ -87,4 +123,49 @@
 .user-info .logOut {
   background-color: #d375b9;
   border: none;
+}
+/**************************/
+/* BELOW 944px (Tablets) */
+/**************************/
+
+@media (min-width: 44em) and (max-width: 59em) {
+  html {
+    /* 8px / 16px = 0.5 = 50% */
+    font-size: 50%;
+  }
+  .SignPage {
+    flex-direction: column;
+  }
+}
+/**************************/
+/* BELOW 704px (Smaller tablets) */
+/**************************/
+
+@media (min-width: 34em) and (max-width: 44em) {
+  .SignPage {
+    flex-direction: column;
+  }
+}
+/**************************/
+/* BELOW 544px (Phones) */
+/**************************/
+
+@media (max-width: 34em) {
+  .landingPage {
+    width: 415px;
+    height: 266px;
+  }
+  .tasks {
+    width: 300px;
+    left: 10%;
+  }
+  .tasks .singleTask,
+  .tasks .addTask input,
+  .tasks .control {
+    height: 48px;
+    width: 327px;
+  }
+  .control{
+    font-size: 8px;
+  }
 }

@@ -2,7 +2,7 @@ import Header from "../header/header";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
 const Dashboard = () => {
@@ -10,6 +10,19 @@ const Dashboard = () => {
   const [userInfo, setUserInfo] = useState(false);
   const [taskState, setTaskState] = useState("");
   const [fetchedTasks, setFetchedTasks] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        "http://localhost:4000/api/dashboard/fetchposts"
+      );
+      const jsonData = await response.json();
+      if (response.status === 200) {
+        setFetchedTasks(jsonData.Tasks);
+        // console.log(fetchedTasks);
+      }
+    };
+    fetchData();
+  });
   // const [modifyUserInfo, setModifyUserInfo] = useState(false);
   const onUserShowHandler = (props) => {
     setUserInfo(props);
@@ -77,6 +90,39 @@ const Dashboard = () => {
       }
     }
   };
+  const onClearTask = async (_id) => {
+    const { email } = JSON.parse(localStorage.getItem("data"));
+    const data = { email, _id };
+    const response = await fetch(
+      "http://localhost:4000/api/dashboard/deletetask",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+  };
+  const onChangeTaskStatus = async (_id, index) => {
+    const { email } = JSON.parse(localStorage.getItem("data"));
+    const data = { email, _id, index };
+    const response = await fetch(
+      "http://localhost:4000/api/dashboard/changestatus",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    const result = await response.json();
+    console.log(result);
+  };
+
   return (
     <>
       <Header onUserClick={onUserShowHandler} />
@@ -104,20 +150,32 @@ const Dashboard = () => {
           </div>
           <div className="closeTask">X</div>
         </div> */}
-        {fetchedTasks.map(function (data) {
+        {fetchedTasks.map(function (data, index) {
           return (
-            <div className="singleTask">
+            <div className="singleTask" key={index}>
               <div className="radioWithTask">
-                <div className="radioBtn"></div>
+                <div
+                  className="radioBtn"
+                  onClick={function () {
+                    onChangeTaskStatus(data._id, index);
+                  }}
+                ></div>
                 <div className="task">{data.title}</div>
               </div>
-              <div className="closeTask">X</div>
+              <div
+                className="closeTask"
+                onClick={function () {
+                  onClearTask(data._id);
+                }}
+              >
+                X
+              </div>
             </div>
           );
         })}
 
         <div className="control">
-          <div>5 Items left</div>
+          <div>{fetchedTasks.length} Items left</div>
           <div className="status">
             <span>All</span>
             <span>Active</span>

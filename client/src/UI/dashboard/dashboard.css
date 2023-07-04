@@ -217,4 +217,8 @@
     width: 375px;
     top: 50%;
   }
+  .addTask span{
+    top: 20%;
+    right: 24%;
+    }
 }

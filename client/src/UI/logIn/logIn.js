@@ -49,7 +49,7 @@ const LogIn = () => {
         });
       } else {
         localStorage.setItem("data", JSON.stringify(data));
-        return navigate("/");
+        return navigate("/dashboard");
       }
     }
   };

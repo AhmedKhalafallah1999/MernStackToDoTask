@@ -58,7 +58,7 @@ const SignUp = () => {
     }
   };
   const LogInHandlerAlt = () => {
-    return navigate("/login");
+    return navigate("/");
   };
   return (
     <div className="SignPage">

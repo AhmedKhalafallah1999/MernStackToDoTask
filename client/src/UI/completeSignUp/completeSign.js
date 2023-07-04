@@ -81,7 +81,7 @@ const CompleteSignUp = () => {
     }
   };
   const LogInHandlerAlt = () => {
-    return navigate("/login");
+    return navigate("/");
   };
   return (
     <div className="comleteSignUp">

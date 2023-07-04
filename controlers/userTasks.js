@@ -35,6 +35,19 @@ function UserTasks(req, res) {
       res.status(400).json({ error: err.message });
     });
 }
+function fetchPosts(req, res) {
+  User.find()
+    .then((result) => {
+      res
+        .status(200)
+        .json({ messge: "The fetched Tasks id ", Tasks: result[0].tasks });
+      // console.log(result[0].tasks);
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err.message });
+    });
+}
 module.exports = {
   UserTasks,
+  fetchPosts,
 };

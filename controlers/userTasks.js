@@ -169,7 +169,18 @@ function changeTaskStatus(req, res) {
       console.log("Oh! Dark");
     });
 }
-
+// For Modify User Data
+function modify(req, res) {
+  const email = req.body.email;
+  console.log(email);
+  User.find({ email: email })
+    .then((result) => {
+      res.status(200).json({ messge: "The User Data ", data: result });
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err.message });
+    });
+}
 module.exports = {
   UserTasks,
   fetchPosts,
@@ -178,4 +189,5 @@ module.exports = {
   deleteTask,
   changeTaskStatus,
   clearCompleted,
+  modify,
 };

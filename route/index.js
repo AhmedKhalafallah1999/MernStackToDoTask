@@ -7,7 +7,8 @@ const {
   fetchCompletedPosts,
   deleteTask,
   changeTaskStatus,
-  clearCompleted
+  clearCompleted,
+  modify,
 } = require("../controlers/userTasks");
 const router = express.Router();
 router.post("/register", registerUser);
@@ -19,5 +20,6 @@ router.post("/dashboard/fetchcompletedposts", fetchCompletedPosts);
 router.post("/dashboard/deletetask", deleteTask);
 router.post("/dashboard/clearcompletedtasks", clearCompleted);
 router.post("/dashboard/changestatus", changeTaskStatus);
+router.post("/modify", modify);
 
 module.exports = router;

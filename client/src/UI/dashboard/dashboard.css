@@ -144,6 +144,13 @@
   background-color: #d375b9;
   border: none;
 }
+.check {
+  background-color: #d375b9;
+  background-image: url("../../../public/check.png");
+}
+.dashed {
+  text-decoration: line-through;
+}
 /**************************/
 /* BELOW 944px (Tablets) */
 /**************************/
@@ -217,8 +224,8 @@
     width: 375px;
     top: 50%;
   }
-  .addTask span{
+  .addTask span {
     top: 20%;
     right: 24%;
-    }
+  }
 }

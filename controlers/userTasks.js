@@ -37,13 +37,57 @@ function UserTasks(req, res) {
       res.status(400).json({ error: err.message });
     });
 }
+// fetch All tasks
 function fetchPosts(req, res) {
-  User.find()
+  const email = req.body.email;
+  // console.log(email);
+  User.find({ email: email })
     .then((result) => {
-      res
-        .status(200)
-        .json({ messge: "The fetched Tasks id ", Tasks: result[0].tasks });
-      // console.log(result[0].tasks);
+      UserTask.find({ user: result[0]._id }).then((data) => {
+        res.status(200).json({ messge: "The fetched Tasks id ", data: data });
+        // console.log(data);
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err.message });
+    });
+}
+// // fetch active Posts
+function fetchActivePosts(req, res) {
+  const email = req.body.email;
+  // console.log(email);
+  User.find({ email: email })
+    .then((result) => {
+      UserTask.find({ user: result[0]._id }).then((data) => {
+        const filteredActiveTasks = data.filter(
+          (item) => item.completed === false
+        );
+        res
+          .status(200)
+          .json({ messge: "The fetched Tasks id ", data: filteredActiveTasks });
+        // console.log(data);
+      });
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err.message });
+    });
+}
+// // fetch completed Posts
+function fetchCompletedPosts(req, res) {
+  const email = req.body.email;
+  console.log(email);
+  User.find({ email: email })
+    .then((result) => {
+      UserTask.find({ user: result[0]._id }).then((data) => {
+        const filteredCompletedTasks = data.filter(
+          (item) => item.completed === true
+        );
+        res.status(200).json({
+          messge: "The fetched Tasks id ",
+          data: filteredCompletedTasks,
+        });
+        // console.log(data);
+      });
     })
     .catch((err) => {
       res.status(400).json({ error: err.message });
@@ -52,7 +96,7 @@ function fetchPosts(req, res) {
 // Delete Task and Fetch Other
 function deleteTask(req, res) {
   const { _id, email } = req.body;
-  console.log(email, _id);
+  // console.log(email, _id);
 
   // ......... validation
   User.updateOne(
@@ -68,32 +112,58 @@ function deleteTask(req, res) {
   ).then((result) => {
     console.log(result);
   });
+  UserTask.findOneAndDelete(_id).then((result) => {
+    res.status(200).json({ message: "Done Deleted Successfully" });
+    console.log("result");
+  });
 }
+function clearCompleted(req, res) {
+  const { _id, email } = req.body;
+  // console.log(email, _id);
 
-// Delete Task and Fetch Other
-function changeTaskStatus(req, res) {
-  const { _id, email, index } = req.body;
-  console.log(email, _id, index);
   // ......... validation
+  User.find({ email: email })
+    .then((result) => {
+      UserTask.deleteMany({ user: result[0]._id, completed: true })
+        .then((data) => {
+          res.status(200).json({ messge: "The fetched Tasks id " });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      res.status(400).json({ error: err.message });
+    });
+
   // User.updateOne(
   //   { email: email },
   //   {
   //     $pull: {
   //       tasks: {
-  //         _id: new mongoose.Types.ObjectId(_id),
+  //         // _id: new mongoose.Types.ObjectId(_id),
+  //         completed: false,
   //       },
   //     },
   //   }
   // ).then((result) => {
   //   console.log(result);
   // });
-  User.findOne({ email: email })
+  // UserTask.findByIdAndDelete(_id).then((result) => {
+  //   res.status(200).json({ message: "Done Deleted Successfully" });
+  //   console.log("result");
+  // });
+}
+
+// Delete Task and Fetch Other
+function changeTaskStatus(req, res) {
+  const { _id, email, index } = req.body;
+  // ......... validation
+  UserTask.findOne({ _id })
     .then((doc) => {
-      item = doc.tasks[index];
-      console.log(item);
-      item["completed"] = true;
-      console.log(item["completed"]);
+      doc.completed = !doc.completed;
       doc.save();
+      res.status(200).json({ message: "Done" });
     })
     .catch((err) => {
       console.log("Oh! Dark");
@@ -103,6 +173,9 @@ function changeTaskStatus(req, res) {
 module.exports = {
   UserTasks,
   fetchPosts,
+  fetchActivePosts,
+  fetchCompletedPosts,
   deleteTask,
   changeTaskStatus,
+  clearCompleted,
 };

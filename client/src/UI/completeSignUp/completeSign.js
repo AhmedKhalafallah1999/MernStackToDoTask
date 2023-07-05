@@ -62,7 +62,7 @@ const CompleteSignUp = () => {
       });
       const result = await response.json();
       if (response.status === 201) {
-        return navigate("/login");
+        return navigate("/");
       } else if (response.status === 400) {
         toast.info(`${result.error},`, {
           position: "top-right",

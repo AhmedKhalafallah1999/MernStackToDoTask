@@ -92,82 +92,81 @@ const ModifyUser = () => {
   };
   return (
     <>
-      <div className="modifyPage">
-        <Header onUserClick={onUserShowHandler} />
+      {/* <div className="modifyPage"> */}
+      <Header onUserClick={onUserShowHandler} />
+      <div className="landingPage"></div>
 
-        <div className="landingPage"></div>
+      {/* <img src="." alt="cover" /> */}
+      <div className="modifyBackage">
+        <div className="modifyTitle">
+          <h1>Modify User Information</h1>
+        </div>
+        <div className="modify">
+          <form>
+            <div>
+              <label>Email</label>
+              <input
+                type="email"
+                name="email"
+                defaultValue={email}
+                onChange={handleInputChange}
+                placeholder="Email"
+                required
+              />
+            </div>
+            <div>
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                defaultValue={password}
+                onChange={handleInputChange}
+                placeholder="Password"
+                required
+              />{" "}
+            </div>
+            <div>
+              <label>Username</label>
+              <input
+                type="text"
+                name="username"
+                defaultValue={username}
+                onChange={handleInputChange}
+                placeholder="username"
+                required
+              />{" "}
+            </div>
+            <div>
+              <label>Phone</label>
+              <input
+                id="phone"
+                type="tel"
+                name="phone"
+                defaultValue={phone}
+                onChange={handleInputChange}
+                placeholder="phone"
+                required
+              />
+            </div>
+            <div>
+              <label>Birth Year</label>
+              <input
+                type="date"
+                name="birthday"
+                defaultValue={birthday}
+                onChange={handleInputChange}
+                placeholder="Birthday"
+                required
+              />{" "}
+            </div>
+          </form>
+        </div>
 
-        {/* <img src="." alt="cover" /> */}
-        <div className="modifyBackage">
-          <div className="modifyTitle">
-            <h1>Modify User Information</h1>
-          </div>
-          <div className="modify">
-            <form>
-              <div>
-                <label>Email</label>
-                <input
-                  type="email"
-                  name="email"
-                  defaultValue={email}
-                  onChange={handleInputChange}
-                  placeholder="Email"
-                  required
-                />
-              </div>
-              <div>
-                <label>Password</label>
-                <input
-                  type="password"
-                  name="password"
-                  defaultValue={password}
-                  onChange={handleInputChange}
-                  placeholder="Password"
-                  required
-                />{" "}
-              </div>
-              <div>
-                <label>Username</label>
-                <input
-                  type="text"
-                  name="username"
-                  defaultValue={username}
-                  onChange={handleInputChange}
-                  placeholder="username"
-                  required
-                />{" "}
-              </div>
-              <div>
-                <label>Phone</label>
-                <input
-                  id="phone"
-                  type="tel"
-                  name="phone"
-                  defaultValue={phone}
-                  onChange={handleInputChange}
-                  placeholder="phone"
-                  required
-                />
-              </div>
-              <div>
-                <label>Birth Year</label>
-                <input
-                  type="date"
-                  name="birthday"
-                  defaultValue={birthday}
-                  onChange={handleInputChange}
-                  placeholder="Birthday"
-                  required
-                />{" "}
-              </div>
-            </form>
-          </div>
-
-          <div className="saveChange">
-            <button onClick={SaveUpdatedUserDataInfo}>Save Changes</button>
-          </div>
+        <div className="saveChange">
+          <button onClick={SaveUpdatedUserDataInfo}>Save Changes</button>
         </div>
       </div>
+      {/* </div> */}
       {userInfo ? (
         <div className="user-info landingBlack">
           <p>{"Hi " + username}</p>

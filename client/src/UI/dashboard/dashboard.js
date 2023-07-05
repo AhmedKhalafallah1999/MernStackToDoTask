@@ -255,7 +255,9 @@ const Dashboard = () => {
           <div>{fetchedTasks.length} Items left</div>
           <div className="status">
             <span onClick={fetchAllTasks}>All</span>
+
             <span onClick={fetchActiveTasks}>Active</span>
+
             <span onClick={fetchCompletedTasks}>Completed</span>
           </div>
           <div onClick={clearCompletedTasksHandler}>Clear Completed</div>
@@ -275,7 +277,7 @@ const Dashboard = () => {
       </div>
       {userInfo ? (
         <div className="user-info landingBlack">
-          <p>{"Hi "+ userName}</p>
+          <p>{"Hi " + userName}</p>
           <button
             className="modify"
             type="submit"

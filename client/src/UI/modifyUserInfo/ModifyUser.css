@@ -76,3 +76,71 @@ input {
   color: #9495A5;
   font-size: 18px;
 }
+/**************************/
+/* BELOW 944px (Tablets) */
+/**************************/
+
+@media (min-width: 40em) and (max-width: 59em) {
+  html {
+    /* 8px / 16px = 0.5 = 50% */
+    font-size: 50%;
+  }
+  .tasks {
+    width: 600px;
+    left: 10%;
+  }
+  .tasks .singleTask,
+  .tasks .addTask input,
+  .tasks .control {
+    height: 48px;
+    width: 500px;
+  }
+  .control {
+    font-size: 8px;
+  }
+}
+/**************************/
+/* BELOW 704px (Smaller tablets) */
+/**************************/
+
+@media (min-width: 30em) and (max-width: 40em) {
+  html {
+    /* 8px / 16px = 0.5 = 50% */
+    font-size: 50%;
+  }
+
+  .tasks {
+    width: 400px;
+    left: 10%;
+  }
+  .tasks .singleTask,
+  .tasks .addTask input,
+  .tasks .control {
+    height: 48px;
+    width: 400px;
+  }
+  .control {
+    font-size: 12px;
+  }
+}
+/**************************/
+/* BELOW 544px (Phones) */
+/**************************/
+
+@media (max-width: 30em) {
+  .landingPage {
+    width: 415px;
+    height: 266px;
+  }
+  .modifyBackage {
+    width: 335px;
+    height: 544px;
+    left: 0%;
+
+  }
+   /* .modifyBackage .modifyTitle, */
+  .modifyBackage  input {
+    height: 47px;
+    width: 310px;
+  }
+}

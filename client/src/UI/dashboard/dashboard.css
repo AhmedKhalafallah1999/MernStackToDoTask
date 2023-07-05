@@ -15,7 +15,7 @@
   position: absolute;
   top: 20%;
   left: 32%;
- /* background-color: #FAFAFA; */
+  /* background-color: #FAFAFA; */
 }
 .tasks {
   margin-bottom: 30px;
@@ -64,6 +64,16 @@
   width: 540px;
   height: 64px;
 }
+.control .status span {
+  cursor: pointer;
+}
+.link {
+  color: #e94cbd;
+}
+.link {
+  text-decoration: none;
+}
+
 .singleTask,
 .control {
   display: flex;

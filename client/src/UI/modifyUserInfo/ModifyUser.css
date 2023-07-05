@@ -1,3 +1,19 @@
+.landingPage {
+  background-image: url("../../../public/screen.png") !important;
+  width: 100%;
+  height: 266px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+.modifyBackage {
+  position: absolute;
+  top: 25%;
+  left: 30%;
+  width: 540px;
+  /* background-color: #FAFAFA; */
+}
 .modifyTitle {
   color: #d375b9;
   background-color: white;
@@ -5,6 +21,10 @@
   height: 64px;
   margin-bottom: 20px;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  border-radius: 10px;
 }
 .modifyTitle h1 {
   font-size: 20px;
@@ -18,9 +38,11 @@
   height: 527px;
   width: 540px;
   background-color: white;
+  border-radius: 10px;
 }
 label {
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+  color: #697386;
 }
 form input {
   height: 47px;
@@ -43,4 +65,14 @@ form div {
   font-size: 24px;
   cursor: pointer;
   margin-top: 20px;
+}
+input {
+  background-color: white;
+  border: 0.2px #919499 solid;
+  border-radius: 8px;
+  box-shadow: 0px 5px 5px rgb(255, 255, 255);
+  box-sizing: border-box;
+  padding: 0 15px;
+  color: #9495A5;
+  font-size: 18px;
 }

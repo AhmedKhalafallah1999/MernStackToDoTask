@@ -11,6 +11,7 @@ const Dashboard = () => {
   const [userInfo, setUserInfo] = useState(false);
   const [taskState, setTaskState] = useState("");
   const [fetchedTasks, setFetchedTasks] = useState([]);
+  const [userName, setUserName] = useState("");
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem("data"));
     const response = axios
@@ -23,6 +24,7 @@ const Dashboard = () => {
       })
       .then((data) => {
         setFetchedTasks(data.data.data);
+        setUserName(data.data.result[0].username);
       });
   }, []);
   // const [modifyUserInfo, setModifyUserInfo] = useState(false);
@@ -273,7 +275,7 @@ const Dashboard = () => {
       </div>
       {userInfo ? (
         <div className="user-info landingBlack">
-          <p>Hi Mohamed</p>
+          <p>{"Hi "+ userName}</p>
           <button
             className="modify"
             type="submit"

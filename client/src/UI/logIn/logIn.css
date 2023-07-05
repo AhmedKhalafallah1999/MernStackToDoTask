@@ -4,6 +4,8 @@
   align-items: center;
   justify-content: center;
   margin-top: 5%;
+    background-image: ('../../../public/screen.png');
+
 }
 .logInPage {
   display: flex;

@@ -7,6 +7,7 @@
 }
 .comleteSignUp {
   display: flex;
+  background-image: ('../../../public/screen.png');
 }
 .signUp {
   display: flex;

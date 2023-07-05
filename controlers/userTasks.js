@@ -44,7 +44,9 @@ function fetchPosts(req, res) {
   User.find({ email: email })
     .then((result) => {
       UserTask.find({ user: result[0]._id }).then((data) => {
-        res.status(200).json({ messge: "The fetched Tasks id ", data: data });
+        res
+          .status(200)
+          .json({ messge: "The fetched Tasks id ", data: data, result: result });
         // console.log(data);
       });
     })
@@ -181,6 +183,33 @@ function modify(req, res) {
       res.status(400).json({ error: err.message });
     });
 }
+// for updating User Data
+function modifyUserInfoAndUpdate(req, res) {
+  const { email, password, username, phone, birthday, oldEmail } =
+    req.body.newData;
+
+  console.log(email, "done", oldEmail);
+  User.findOneAndUpdate(
+    { email: oldEmail },
+    {
+      email: email,
+      password: password,
+      confirmpassword: password,
+      phone: phone,
+      username: username,
+      birthday: birthday,
+    }
+  )
+    .then((result) => {
+      res
+        .status(200)
+        .json({ message: "User Update Successfully", data: email });
+      // console.log(data);
+    })
+    .catch((err) => {
+      res.status(404).json({ message: "Some thing wrong happened, try again" });
+    });
+}
 module.exports = {
   UserTasks,
   fetchPosts,
@@ -190,4 +219,5 @@ module.exports = {
   changeTaskStatus,
   clearCompleted,
   modify,
+  modifyUserInfoAndUpdate,
 };

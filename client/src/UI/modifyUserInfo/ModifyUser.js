@@ -1,12 +1,27 @@
 import "./ModifyUser.css";
+import Header from "../header/header";
+import { useNavigate } from "react-router-dom";
+
 import { React, useState, useEffect } from "react";
 import axios from "axios";
+// import Dashboard from "../dashboard/dashboard";
 const ModifyUser = () => {
+  const navigate = useNavigate();
+
+  const [userInfo, setUserInfo] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUserName] = useState("");
   const [phone, setPhone] = useState("");
   const [birthday, setBirthDay] = useState("");
+  const [formState, setFormState] = useState({
+    oldEmail: "",
+    email: "",
+    password: "",
+    username: "",
+    phone: "",
+    birthday: "",
+  });
   useEffect(() => {
     const { email } = JSON.parse(localStorage.getItem("data"));
     const response = axios
@@ -18,7 +33,7 @@ const ModifyUser = () => {
         },
       })
       .then((data) => {
-        console.log(data.data.data[0]);
+        // console.log(data.data.data[0]);
         const user = data.data.data[0];
         const email = user.email;
         const password = user.password;
@@ -30,79 +45,145 @@ const ModifyUser = () => {
         setUserName(username);
         setBirthDay(birthday);
         setPhone(phone);
-       // setFetchedTasks(data.data.data);
+        const { email: oldEmail } = JSON.parse(localStorage.getItem("data"));
+        setFormState({
+          oldEmail: oldEmail,
+          email: email,
+          password: password,
+          username: username,
+          phone: phone,
+          birthday: birthday,
+        });
+
+        // setFetchedTasks(data.data.data);
+        // console.log(formState);
       });
   }, []);
+  // console.log(formState);
 
+  const onUserShowHandler = (props) => {
+    setUserInfo(props);
+  };
+  const DashboardHandler = () => {
+    navigate("/dashboard");
+  };
+  const LogOutHandler = () => {
+    localStorage.removeItem("data");
+    navigate("/");
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormState((prevState) => ({ ...prevState, [name]: value }));
+    // console.log(formState);
+  };
+  const SaveUpdatedUserDataInfo = () => {
+    const response = axios
+      .patch("http://localhost:4000/api/modifyinfoandupdate", {
+        newData: formState,
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+      })
+      .then((data) => {
+        localStorage.setItem("data", JSON.stringify({ email: data.data.data }));
+        console.log(data);
+      });
+  };
   return (
-    <div className="modifyPage">
-      {/* <img src="." alt="cover" /> */}
-      <div className="modifyTitle">
-        <h1>Modify User Information</h1>
+    <>
+      <div className="modifyPage">
+        <Header onUserClick={onUserShowHandler} />
+
+        <div className="landingPage"></div>
+
+        {/* <img src="." alt="cover" /> */}
+        <div className="modifyBackage">
+          <div className="modifyTitle">
+            <h1>Modify User Information</h1>
+          </div>
+          <div className="modify">
+            <form>
+              <div>
+                <label>Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  defaultValue={email}
+                  onChange={handleInputChange}
+                  placeholder="Email"
+                  required
+                />
+              </div>
+              <div>
+                <label>Password</label>
+                <input
+                  type="password"
+                  name="password"
+                  defaultValue={password}
+                  onChange={handleInputChange}
+                  placeholder="Password"
+                  required
+                />{" "}
+              </div>
+              <div>
+                <label>Username</label>
+                <input
+                  type="text"
+                  name="username"
+                  defaultValue={username}
+                  onChange={handleInputChange}
+                  placeholder="username"
+                  required
+                />{" "}
+              </div>
+              <div>
+                <label>Phone</label>
+                <input
+                  id="phone"
+                  type="tel"
+                  name="phone"
+                  defaultValue={phone}
+                  onChange={handleInputChange}
+                  placeholder="phone"
+                  required
+                />
+              </div>
+              <div>
+                <label>Birth Year</label>
+                <input
+                  type="date"
+                  name="birthday"
+                  defaultValue={birthday}
+                  onChange={handleInputChange}
+                  placeholder="Birthday"
+                  required
+                />{" "}
+              </div>
+            </form>
+          </div>
+
+          <div className="saveChange">
+            <button onClick={SaveUpdatedUserDataInfo}>Save Changes</button>
+          </div>
+        </div>
       </div>
-      <div className="modify">
-        <form>
-          <div>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={email}
-              // onChange={handleInputChange}
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={password}
-              // onChange={handleInputChange}
-              placeholder="Password"
-              required
-            />{" "}
-          </div>
-          <div>
-            <label>Username</label>
-            <input
-              type="text"
-              name="username"
-              value={username}
-              // onChange={handleInputChange}
-              placeholder="username"
-              required
-            />{" "}
-          </div>
-          <div>
-            <label>Phone</label>
-            <input
-              id="phone"
-              type="tel"
-              name="text"
-              value={phone}
-              // onChange={handleInputChange}
-              placeholder="phone"
-              required
-            />
-          </div>
-          <div>
-            <label>Birth Year</label>
-            <input
-              type="date"
-              name="birthday"
-              value={birthday}
-              // onChange={handleInputChange}
-              required
-            />{" "}
-          </div>
-        </form>
-      </div>
-      <div className="saveChange">
-        <button>Save Changes</button>
-      </div>
-    </div>
+      {userInfo ? (
+        <div className="user-info landingBlack">
+          <p>{"Hi " + username}</p>
+          <button className="modify" type="submit" onClick={DashboardHandler}>
+            Your DashBoard
+          </button>
+          <form action="/logout" method="POST">
+            <button className="logOut" type="submit" onClick={LogOutHandler}>
+              LogOut
+            </button>
+          </form>
+        </div>
+      ) : (
+        ""
+      )}
+    </>
   );
 };
 export default ModifyUser;

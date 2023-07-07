@@ -30,6 +30,10 @@ img {
   height: 40px;
   cursor: pointer;
 }
+.toggle-language {
+  outline: none;
+  cursor: pointer;
+}
 /**************************/
 /* BELOW 944px (Tablets) */
 /**************************/
@@ -64,7 +68,7 @@ img {
   .right-section {
     gap: 10px;
   }
-  .logo-header{
+  .logo-header {
     font-size: 18px;
   }
 }

@@ -1,12 +1,19 @@
 import Header from "../header/header";
 import React from "react";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./dashboard.css";
 const Dashboard = () => {
+  const [t, i18n] = useTranslation();
+  const [pageDir, setPageDir] = useState();
+  const pageDirectionHandler = (state) => {
+    console.log(state);
+    setPageDir(state);
+  };
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(false);
   const [taskState, setTaskState] = useState("");
@@ -202,7 +209,10 @@ const Dashboard = () => {
 
   return (
     <>
-      <Header onUserClick={onUserShowHandler} />
+      <Header
+        onUserClick={onUserShowHandler}
+        onPageDirection={pageDirectionHandler}
+      />
       <div className="landingPage"></div>
       <div className="tasks">
         <div className="addTask">
@@ -251,17 +261,39 @@ const Dashboard = () => {
           );
         })}
 
-        <div className="control">
-          <div>{fetchedTasks.length} Items left</div>
-          <div className="status">
-            <span onClick={fetchAllTasks}>All</span>
-
-            <span onClick={fetchActiveTasks}>Active</span>
-
-            <span onClick={fetchCompletedTasks}>Completed</span>
+        {!pageDir && (
+          <div className="control">
+            <div>
+              {fetchedTasks.length}
+              {t("Items left")}
+            </div>
+            <div className="status">
+              <span onClick={fetchAllTasks}>{t("All")}</span>
+              <span onClick={fetchActiveTasks}>{t("Active")}</span>
+              <span onClick={fetchCompletedTasks}>{t("Completed")}</span>
+            </div>
+            <div onClick={clearCompletedTasksHandler}>
+              {t("Clear Completed")}
+            </div>
           </div>
-          <div onClick={clearCompletedTasksHandler}>Clear Completed</div>
-        </div>
+        )}
+        {pageDir && (
+          <div className="control">
+            <div>
+              {fetchedTasks.length} {t("Items left")}
+            </div>
+            <div className="status">
+              <span onClick={fetchAllTasks}>{t("All")}</span>
+
+              <span onClick={fetchActiveTasks}>{t("Active")}</span>
+
+              <span onClick={fetchCompletedTasks}>{t("completed")}</span>
+            </div>
+            <div onClick={clearCompletedTasksHandler}>
+              {t("Clear Completed")}
+            </div>
+          </div>
+        )}
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -275,19 +307,38 @@ const Dashboard = () => {
           theme="dark"
         />
       </div>
-      {userInfo ? (
+      {!pageDir && userInfo ? (
         <div className="user-info landingBlack">
-          <p>{"Hi " + userName}</p>
+          <p>{t("Hi") + userName}</p>
           <button
             className="modify"
             type="submit"
             onClick={modifyUserINfoHandler}
           >
-            Modify User Info
+            {t("Modify User Info")}
           </button>
           <form action="/logout" method="POST">
             <button className="logOut" type="submit" onClick={LogOutHandler}>
-              LogOut
+              {t("LogOut")}
+            </button>
+          </form>
+        </div>
+      ) : (
+        ""
+      )}
+      {pageDir && userInfo ? (
+        <div className="user-info landingBlack">
+          <p>{t("Hi") + userName}</p>
+          <button
+            className="modify"
+            type="submit"
+            onClick={modifyUserINfoHandler}
+          >
+            {t("Modify User Info")}
+          </button>
+          <form action="/logout" method="POST">
+            <button className="logOut" type="submit" onClick={LogOutHandler}>
+              {t("LogOut")}
             </button>
           </form>
         </div>

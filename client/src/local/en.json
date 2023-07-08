@@ -7,5 +7,19 @@
   "Clear Completed": "Clear Completed",
   "Modify User Info": "Modify User Info",
   "LogOut": "LogOut",
-  "Hi": "Hi "
+  "Hi": "Hi ",
+  "Log In": "Log In",
+  "Email": "Email",
+  "Password": "Password",
+  "Confirm Password": "Confirm Password",
+  "Complete Signup": "Complete Signup",
+  "LogIn": "LogIn",
+  "Alt": "Don't have an account!",
+  "Alt2": "Alerady I have an account!",
+  "Sign Up": "Sign Up",
+  "UserName": "User Name",
+  "Phone": "Phone",
+  "Back": "Back",
+  "BirthYear": "Birth Year",
+  "CompleteSignUp": "Complete SignUp"
 }

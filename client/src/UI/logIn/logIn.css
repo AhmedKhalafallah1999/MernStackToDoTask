@@ -1,11 +1,18 @@
+.logInLang {
+  position: absolute;
+  left: 25%;
+  top: 65%;
+  color: white;
+  font-size: 60px;
+  cursor: pointer;
+}
 .logInPage {
   display: flex;
 
   align-items: center;
   justify-content: center;
   margin-top: 5%;
-    background-image: ('../../../public/screen.png');
-
+  background-image: ("../../../public/screen.png");
 }
 .logInPage {
   display: flex;
@@ -83,7 +90,6 @@ form div {
   .logInPage {
     flex-direction: column;
   }
-
 }
 /**************************/
 /* BELOW 544px (Phones) */

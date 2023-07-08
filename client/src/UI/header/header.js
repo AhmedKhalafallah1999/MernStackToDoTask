@@ -2,16 +2,26 @@ import "./header.css";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { pageDirActions } from "../../store/store";
+
 const Header = (props) => {
   const pageDirHandler = (state) => {
     props.onPageDirection(state);
   };
-  const [pageDirection, setPageDir] = useState(true);
+  const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
+  const pageDirDispatch = useDispatch();
+  useEffect(() => {
+    setPageDir(pageDirSelector);
+  }, [pageDirSelector]);
+
+  const [pageDirection, setPageDir] = useState(pageDirSelector);
   const [t, i18n] = useTranslation();
-  const [onClickState, setOnClick] = useState(false);
+  // const [onClickState, setOnClick] = useState(false);
   const userInfoSliderHandler = () => {
-    setOnClick(!onClickState);
-    props.onUserClick(!onClickState);
+    // setOnClick(pageDirSelector);
+    props.onUserClick(pageDirSelector);
   };
   return (
     <div className="header">
@@ -25,8 +35,9 @@ const Header = (props) => {
             className="toggle-language"
             onClick={() => {
               i18n.changeLanguage("en");
-              setPageDir(!pageDirection);
-              pageDirHandler(pageDirection);
+              // setPageDir(!pageDirection);
+              // pageDirHandler(pageDirection);
+              pageDirDispatch(pageDirActions.changePageDir(!pageDirSelector));
             }}
           >
             En
@@ -37,8 +48,9 @@ const Header = (props) => {
             className="toggle-language"
             onClick={() => {
               i18n.changeLanguage("ar");
-              setPageDir(!pageDirection);
-              pageDirHandler(pageDirection);
+              // setPageDir(!pageDirection);
+              pageDirHandler(pageDirSelector);
+              pageDirDispatch(pageDirActions.changePageDir(!pageDirSelector));
             }}
           >
             Ar

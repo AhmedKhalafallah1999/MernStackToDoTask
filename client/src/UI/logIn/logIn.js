@@ -1,17 +1,30 @@
 import LeftFrame from "../leftFrame/leftFrame";
 import { React, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import pageDirActions form '../../store/store'
+// import { useDispatch } from "react-redux";
+import { pageDirActions } from "../../store/store";
 import "./logIn.css";
 const LogIn = () => {
+  const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
+  const pageDirDispatch = useDispatch();
+  useEffect(() => {
+    setPageDir(pageDirSelector);
+  }, [pageDirSelector]);
+  // console.log(pageDirSelector);
+  const [t, i18n] = useTranslation();
   const navigate = useNavigate();
-
   const [formState, setFormState] = useState({
     email: "",
     password: "",
   });
+  const [pageDir, setPageDir] = useState(pageDirSelector);
+  // setPageDir(pageDirSelector);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
@@ -21,6 +34,7 @@ const LogIn = () => {
     // console.log(formState);
   };
   // register func
+
   const logInFunc = async () => {
     const { email, password } = formState;
     const data = { email, password };
@@ -61,44 +75,111 @@ const LogIn = () => {
     <div className="logInPage">
       {" "}
       <LeftFrame />
-      <div className="logIn">
-        {/* <div className="form"> */}
-        <h1>Log In</h1>
-        <form onSubmit={handleFormSubmit}>
-          <div>
-            <label>Email</label>
-            <input
-              type="email"
-              name="email"
-              value={formState.email}
-              onChange={handleInputChange}
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formState.password}
-              onChange={handleInputChange}
-              placeholder="Password"
-              required
-            />
-          </div>
+      {!pageDir && (
+        <span
+          className="logInLang"
+          onClick={() => {
+            pageDirDispatch(pageDirActions.changePageDir(!pageDirSelector));
+            // setPageDir(pageDirSelector);
+            i18n.changeLanguage("en");
+          }}
+        >
+          En
+        </span>
+      )}
+      {pageDir && (
+        <span
+          className="logInLang"
+          onClick={() => {
+            pageDirDispatch(pageDirActions.changePageDir(!pageDirSelector));
+            // setPageDir(pageDirSelector);
+            // setPageDir(!pageDir);
+            i18n.changeLanguage("ar");
+          }}
+        >
+          Ar
+        </span>
+      )}
+      {pageDir && (
+        <div className="logIn">
+          {/* <div className="form"> */}
+          <h1>{t("Log In")}</h1>
+          <form onSubmit={handleFormSubmit}>
+            <div>
+              <label>{t("Email")}</label>
+              <input
+                type="email"
+                name="email"
+                value={formState.email}
+                onChange={handleInputChange}
+                placeholder={t("Email")}
+                required
+              />
+            </div>
+            <div>
+              <label>{t("Password")}</label>
+              <input
+                type="password"
+                name="password"
+                value={formState.password}
+                onChange={handleInputChange}
+                placeholder={t("Password")}
+                required
+              />
+            </div>
 
-          <button className="logInBtn" onClick={logInFunc}>
-            LogIn
-          </button>
+            <button className="logInBtn" onClick={logInFunc}>
+              {t("LogIn")}
+            </button>
 
-          <div className="alternative">
-            <p>Don't have an account!</p>
-            <button onClick={SignUpHandlerAlt}>Sign Up</button>
-          </div>
-        </form>
-        {/* </div> */}
-      </div>
+            <div className="alternative">
+              <p>{t("Alt")}</p>
+              <button onClick={SignUpHandlerAlt}>{t("Sign Up")}</button>
+            </div>
+          </form>
+          {/* </div> */}
+        </div>
+      )}
+      {!pageDir && (
+        <div className="logIn">
+          {/* <div className="form"> */}
+          <h1>{t("Log In")}</h1>
+          <form onSubmit={handleFormSubmit}>
+            <div>
+              <label>{t("Email")}</label>
+              <input
+                type="email"
+                name="email"
+                value={formState.email}
+                onChange={handleInputChange}
+                placeholder={t("Email")}
+                required
+              />
+            </div>
+            <div>
+              <label>{t("Password")}</label>
+              <input
+                type="password"
+                name="password"
+                value={formState.password}
+                onChange={handleInputChange}
+                placeholder={t("Password")}
+                required
+              />
+            </div>
+
+            <button className="logInBtn" onClick={logInFunc}>
+              {t("LogIn")}
+            </button>
+
+            <div className="alternative">
+              <p>{t("Alt")}</p>
+              <button onClick={SignUpHandlerAlt}>{t("Sign Up")}</button>
+            </div>
+          </form>
+          {/* </div> */}
+        </div>
+      )}
       <ToastContainer
         position="top-right"
         autoClose={5000}

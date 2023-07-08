@@ -1,11 +1,20 @@
 import "./ModifyUser.css";
 import Header from "../header/header";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 // import Dashboard from "../dashboard/dashboard";
 const ModifyUser = () => {
+
+  const ThemeSelector = useSelector((state) => state.Theme.theme);
+  if (ThemeSelector) {
+    document.getElementsByTagName("BODY")[0].classList.add("darkColor");
+  } else {
+    document.getElementsByTagName("BODY")[0].classList.remove("darkColor");
+  }
+
   const navigate = useNavigate();
 
   const [userInfo, setUserInfo] = useState(false);
@@ -97,7 +106,7 @@ const ModifyUser = () => {
       <div className="landingPage"></div>
 
       {/* <img src="." alt="cover" /> */}
-      <div className="modifyBackage">
+      <div className={ThemeSelector ? "modifyBackage darkButton" : "modifyBackage"}>
         <div className="modifyTitle">
           <h1>Modify User Information</h1>
         </div>

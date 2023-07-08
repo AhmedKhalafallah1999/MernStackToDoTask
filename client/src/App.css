@@ -1,6 +1,7 @@
 body {
-  /* background-color: #fafafa; */
-  background-image: url('../public/screen.png');
+  background-color: #fafafa;
+  /* background-color: #241229; */
+  /* background-image: url('../public/screen.png'); */
 }
 /* .App{
   display: flex;
@@ -10,3 +11,6 @@ body {
   flex-direction: column;
 
 } */
+.darkColor{
+  background-color: #241229;
+}

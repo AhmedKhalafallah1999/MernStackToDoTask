@@ -162,6 +162,31 @@
 .dashed {
   text-decoration: line-through;
 }
+/* Dark Them */
+.darkButton input,
+.darkButton .singleTask,
+.darkButton .control {
+  background-color: #25273d;
+  box-shadow: none;
+}
+.darkButton .singleTask {
+  border-bottom: 0.8px solid #979797;
+}
+.darkButton input::placeholder,
+.darkButton .singleTask,
+.darkButton .control {
+  color: white;
+}
+.darkThemeInfo {
+  background-color: #241229;
+}
+.darkThemeInfo .modify {
+  background-color: white;
+  color: black;
+}
+.darkThemeInfo label {
+  color: white;
+}
 /**************************/
 /* BELOW 944px (Tablets) */
 /**************************/

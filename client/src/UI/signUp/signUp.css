@@ -3,7 +3,11 @@
 
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
+  /* margin-top: 5%;
+   */
+   height: 100vh;
+   background-image: url("../../../public/full.png");
+ 
 }
 .signUp {
   display: flex;

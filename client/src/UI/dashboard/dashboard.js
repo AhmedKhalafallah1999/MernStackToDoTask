@@ -6,8 +6,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import "./dashboard.css";
 const Dashboard = () => {
+  const ThemeSelector = useSelector((state) => state.Theme.theme);
+  // console.log(ThemeSelector);
+  if (ThemeSelector) {
+    document.getElementsByTagName("BODY")[0].classList.add("darkColor");
+  } else {
+    document.getElementsByTagName("BODY")[0].classList.remove("darkColor");
+  }
   const [t, i18n] = useTranslation();
   const [pageDir, setPageDir] = useState();
   const pageDirectionHandler = (state) => {
@@ -214,7 +222,7 @@ const Dashboard = () => {
         onPageDirection={pageDirectionHandler}
       />
       <div className="landingPage"></div>
-      <div className="tasks">
+      <div className={ThemeSelector ? "tasks darkButton" : "tasks"}>
         <div className="addTask">
           <input
             id="taskInput"
@@ -308,7 +316,13 @@ const Dashboard = () => {
         />
       </div>
       {!pageDir && userInfo ? (
-        <div className="user-info landingBlack">
+        <div
+          className={
+            ThemeSelector
+              ? "user-info landingBlack darkThemeInfo"
+              : "user-info landingBlack"
+          }
+        >
           <p>{t("Hi") + userName}</p>
           <button
             className="modify"

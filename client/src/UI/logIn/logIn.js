@@ -14,7 +14,9 @@ const LogIn = () => {
   const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
   const pageDirDispatch = useDispatch();
   useEffect(() => {
+    // const lstorage = localStorage.getItem("lan");
     setPageDir(pageDirSelector);
+    // setPageDir(lstorage);
   }, [pageDirSelector]);
   // console.log(pageDirSelector);
   const [t, i18n] = useTranslation();
@@ -24,6 +26,7 @@ const LogIn = () => {
     password: "",
   });
   const [pageDir, setPageDir] = useState(pageDirSelector);
+  // const [pageDir, setPageDir] = useState(pageDirSelector);
   // setPageDir(pageDirSelector);
   const handleInputChange = (event) => {
     const { name, value } = event.target;

@@ -3,10 +3,18 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import { useEffect } from "react";
+import { ThemeAction } from "../../store/store";
 import { useSelector, useDispatch } from "react-redux";
 import { pageDirActions } from "../../store/store";
 
 const Header = (props) => {
+  const ThemeDispatch = useDispatch();
+  const [chaneTheme, setChangeTheme] = useState(false);
+  const changeThemeHandler = () => {
+    setChangeTheme(!chaneTheme);
+    ThemeDispatch(ThemeAction.changeTheme(chaneTheme));
+  };
+
   const pageDirHandler = (state) => {
     props.onPageDirection(state);
   };
@@ -56,7 +64,17 @@ const Header = (props) => {
             Ar
           </h3>
         )}
-        <img src="./Combined Shape.png" alt="moon" />
+        {!chaneTheme && (
+          <img
+            src="./Combined Shape.png"
+            alt="moon"
+            onClick={changeThemeHandler}
+          />
+        )}
+        {chaneTheme && (
+          <img src="./darktheme.png" alt="moon" onClick={changeThemeHandler} />
+        )}
+
         <img src="./user.png" alt="user" onClick={userInfoSliderHandler} />
       </div>
     </div>

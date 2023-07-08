@@ -73,8 +73,22 @@ input {
   box-shadow: 0px 5px 5px rgb(255, 255, 255);
   box-sizing: border-box;
   padding: 0 15px;
-  color: #9495A5;
+  color: #9495a5;
   font-size: 18px;
+}
+/* Dark Theme */
+.darkButton input {
+  background-color: #3c4257;
+  box-shadow: none;
+  color: white;
+}
+.darkButton .modify,
+.darkButton .modifyTitle {
+  background-color: #25273d;
+  color: white;
+}
+.darkButton label {
+  color: white;
 }
 /**************************/
 /* BELOW 944px (Tablets) */
@@ -136,10 +150,9 @@ input {
     width: 335px;
     height: 544px;
     left: 0%;
-
   }
-   /* .modifyBackage .modifyTitle, */
-  .modifyBackage  input {
+  /* .modifyBackage .modifyTitle, */
+  .modifyBackage input {
     height: 47px;
     width: 310px;
   }

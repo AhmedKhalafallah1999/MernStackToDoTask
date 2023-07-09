@@ -8,15 +8,21 @@ import { useSelector, useDispatch } from "react-redux";
 import { pageDirActions } from "../../store/store";
 
 const Header = (props) => {
+  // useEffect(() => {
+  //   document.documentElement.dir = localStorage.getItem("dir");
+  //   // const Lan = localStorage.getItem("lan");
+  // }, []);
+
   const ThemeDispatch = useDispatch();
   const [chaneTheme, setChangeTheme] = useState(false);
+  const [userInfoShow, setUserInfoShow] = useState(true);
   const changeThemeHandler = () => {
     setChangeTheme(!chaneTheme);
     ThemeDispatch(ThemeAction.changeTheme(chaneTheme));
   };
 
   const pageDirHandler = (state) => {
-    props.onPageDirection(state);
+    // props.onPageDirection(state);
   };
   const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
   const pageDirDispatch = useDispatch();
@@ -28,8 +34,8 @@ const Header = (props) => {
   const [t, i18n] = useTranslation();
   // const [onClickState, setOnClick] = useState(false);
   const userInfoSliderHandler = () => {
-    // setOnClick(pageDirSelector);
-    props.onUserClick(pageDirSelector);
+    setUserInfoShow(!userInfoShow);
+    props.onUserClick(userInfoShow);
   };
   return (
     <div className="header">
@@ -46,6 +52,7 @@ const Header = (props) => {
               // setPageDir(!pageDirection);
               // pageDirHandler(pageDirection);
               pageDirDispatch(pageDirActions.changePageDir(!pageDirSelector));
+              
             }}
           >
             En

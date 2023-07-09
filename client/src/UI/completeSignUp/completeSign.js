@@ -10,6 +10,11 @@ import { useEffect } from "react";
 
 import "./completeSignUp.css";
 const CompleteSignUp = () => {
+  // useEffect(() => {
+  //   document.documentElement.dir = localStorage.getItem("dir");
+  //   // const Lan = localStorage.getItem("lan");
+  // }, []);
+
   const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
   const pageDirDispatch = useDispatch();
   useEffect(() => {

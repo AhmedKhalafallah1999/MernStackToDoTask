@@ -7,6 +7,10 @@ import { React, useState, useEffect } from "react";
 import axios from "axios";
 // import Dashboard from "../dashboard/dashboard";
 const ModifyUser = () => {
+  // useEffect(() => {
+  //   document.documentElement.dir = localStorage.getItem("dir");
+  //   // const Lan = localStorage.getItem("lan");
+  // }, []);
 
   const ThemeSelector = useSelector((state) => state.Theme.theme);
   if (ThemeSelector) {
@@ -106,7 +110,9 @@ const ModifyUser = () => {
       <div className="landingPage"></div>
 
       {/* <img src="." alt="cover" /> */}
-      <div className={ThemeSelector ? "modifyBackage darkButton" : "modifyBackage"}>
+      <div
+        className={ThemeSelector ? "modifyBackage darkButton" : "modifyBackage"}
+      >
         <div className="modifyTitle">
           <h1>Modify User Information</h1>
         </div>
@@ -177,7 +183,13 @@ const ModifyUser = () => {
       </div>
       {/* </div> */}
       {userInfo ? (
-        <div className="user-info landingBlack">
+        <div
+          className={
+            ThemeSelector
+              ? "user-info landingBlack darkThemeInfo"
+              : "user-info landingBlack"
+          }
+        >
           <p>{"Hi " + username}</p>
           <button className="modify" type="submit" onClick={DashboardHandler}>
             Your DashBoard

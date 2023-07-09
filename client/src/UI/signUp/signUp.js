@@ -10,6 +10,11 @@ import { useNavigate } from "react-router-dom";
 import { PrimaryActions } from "../../store/store";
 import { pageDirActions } from "../../store/store";
 const SignUp = () => {
+  // useEffect(() => {
+  //   document.documentElement.dir = localStorage.getItem("dir");
+  //   // const Lan = localStorage.getItem("lan");
+  // }, []);
+
   const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
   const pageDirDispatch = useDispatch();
   useEffect(() => {

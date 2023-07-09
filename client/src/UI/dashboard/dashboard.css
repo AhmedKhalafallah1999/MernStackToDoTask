@@ -119,6 +119,9 @@
   display: flex;
   gap: 16px;
 }
+.control div{
+  cursor: pointer;
+}
 .user-info {
   display: flex;
   flex-direction: column;
@@ -135,6 +138,9 @@
   box-shadow: 0px 1px 10px #d8d5d5;
   box-sizing: border-box;
   gap: 15px;
+}
+.RTL{
+  left: 10%;
 }
 .user-info p {
   color: #d375b9;

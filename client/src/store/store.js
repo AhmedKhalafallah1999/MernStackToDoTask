@@ -1,5 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
+import { json } from "body-parser";
+
 const initialDataState = { PrimaryData: [] };
 const PrimaryDataSlice = createSlice({
   name: "PrimaryData",
@@ -20,8 +22,14 @@ const PageDirSlice = createSlice({
       state.pageDir = !state.pageDir;
       if (state.pageDir === true) {
         document.documentElement.dir = "ltr";
+        localStorage.setItem("dir", "ltr");
+        localStorage.setItem("lan", "true");
       } else {
         document.documentElement.dir = "rtl";
+        localStorage.setItem("dir", "rtl");
+        localStorage.setItem("lan", "false");
+        // console.log(document.querySelector('.logInLang').classList.add('RTL'));
+        // console.log(document.querySelector('.logInLang').classList.add('RTL'))
       }
       // localStorage.setItem("lan", (!state.pageDir));
     },

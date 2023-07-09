@@ -11,12 +11,24 @@ import "./dashboard.css";
 const Dashboard = () => {
   const ThemeSelector = useSelector((state) => state.Theme.theme);
   // console.log(ThemeSelector);
+  const [lanS, setLanS] = useState("");
   if (ThemeSelector) {
     document.getElementsByTagName("BODY")[0].classList.add("darkColor");
   } else {
     document.getElementsByTagName("BODY")[0].classList.remove("darkColor");
   }
   const [t, i18n] = useTranslation();
+  // useEffect(() => {
+  //   document.documentElement.dir = localStorage.getItem("dir");
+  //   // const Lan = localStorage.getItem("lan");
+  // }, []);
+  // if (lanS === "false") {
+  //   i18n.changeLanguage("ar");
+
+  // } else {
+  //   i18n.changeLanguage("en");
+  // }
+  console.log(typeof lanS);
   const [pageDir, setPageDir] = useState();
   const pageDirectionHandler = (state) => {
     console.log(state);
@@ -24,6 +36,11 @@ const Dashboard = () => {
   };
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState(false);
+  // if (document.documentElement.dir === "rtl" && !userInfo) {
+  //   console.log(document.getElementsByClassName("user-info")[0]);
+  //   console.log("Yes");
+  // }
+
   const [taskState, setTaskState] = useState("");
   const [fetchedTasks, setFetchedTasks] = useState([]);
   const [userName, setUserName] = useState("");
@@ -230,7 +247,7 @@ const Dashboard = () => {
             name="text"
             // value={taskState}
             onChange={handleInputChange}
-            placeholder="Type your task here,"
+            placeholder={t("Type your task here,")}
             required
           />
           <span className="addToDB" onClick={submitTaskHandler}>
@@ -341,7 +358,13 @@ const Dashboard = () => {
         ""
       )}
       {pageDir && userInfo ? (
-        <div className="user-info landingBlack">
+        <div
+          className={
+            ThemeSelector
+              ? "user-info landingBlack darkThemeInfo"
+              : "user-info landingBlack"
+          }
+        >
           <p>{t("Hi") + userName}</p>
           <button
             className="modify"

@@ -11,6 +11,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { pageDirActions } from "../../store/store";
 import "./logIn.css";
 const LogIn = () => {
+  // useEffect(() => {
+  //   document.documentElement.dir = localStorage.getItem("dir");
+  //   // const Lan = localStorage.getItem("lan");
+  // }, []);
+
   const pageDirSelector = useSelector((state) => state.changePageDir.pageDir);
   const pageDirDispatch = useDispatch();
   useEffect(() => {
@@ -92,12 +97,13 @@ const LogIn = () => {
       )}
       {pageDir && (
         <span
-          className="logInLang"
+          className={!pageDirSelector ? "logInLang specialRTL" : "logInLang"}
           onClick={() => {
             pageDirDispatch(pageDirActions.changePageDir(!pageDirSelector));
             // setPageDir(pageDirSelector);
             // setPageDir(!pageDir);
             i18n.changeLanguage("ar");
+            // document.querySelector('.logInLang').classList.add('RTL');
           }}
         >
           Ar

@@ -6,6 +6,13 @@
   font-size: 60px;
   cursor: pointer;
 }
+.specialRTL {
+  /* right: 25%; */
+  /* left: 85%; */
+  /* background-color: aqua; */
+  /* font-size: 60px; */
+  /* color: #bc3e98; */
+}
 .logInPage {
   display: flex;
 
